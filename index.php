@@ -1,6 +1,9 @@
 <?php
     require 'header.php';
-    require 'oeuvres.php';
+    require 'bdd.php'; // Connexion du fichier à la base de donnée//
+
+    $bdd = connexion (); // Appel de la fonction connexion() pour obtenir un objet PDO//
+    $oeuvres = $bdd ->query ('SELECT * FROM oeuvres');// Exécution de la requête SQL pour récupérer toutes les œuvres//
 ?>
 <div id="liste-oeuvres">
     <?php foreach($oeuvres as $oeuvre): ?>
