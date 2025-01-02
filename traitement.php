@@ -8,7 +8,7 @@ if (
     empty($_POST['description']) || // Si le champ 'description' est vide
     empty($_POST['image']) || // Si le champ 'image' est vide
     empty($_POST['titre']) || // Si le champ 'titre' est vide
-    strlen($_POST['description']) < 3 || // Si la description fait moins de 3 caractères
+    strlen($_POST['description']) < 3 || // Si la description fait moins de 3 caractères cette fonction permet de mesurer la longueur de notre chaine de caractère
     !filter_var($_POST['image'], FILTER_VALIDATE_URL) // Si l'URL de l'image n'est pas valide
 ) {
     // Si une des conditions ci-dessus est vraie, on renvoie l'utilisateur vers la page 'ajouter.php' avec un message d'erreur
@@ -29,7 +29,7 @@ if (
     $bdd = connexion(); // Appel de la fonction de connexion à la base de données
 
     // Préparation de la requête SQL pour insérer l'œuvre dans la table 'oeuvres'
-    $requete = $bdd->prepare('INSERT INTO oeuvres (titre, description, artiste, image) VALUES (?, ?, ?, ?)');
+    $requete = $bdd->prepare('INSERT INTO oeuvres (artiste, description, image, titre) VALUES (?, ?, ?, ?)');
     
     // Exécution de la requête en passant les données sécurisées comme paramètres
     $requete->execute([$artiste, $description, $image, $titre]);
